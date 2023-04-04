@@ -1,20 +1,25 @@
 import styled from '@emotion/styled';
 
+export const Icon = styled.div`
+  margin-right: 10px;
+`;
+
 export const Button = styled.button`
   padding: 8px 16px;
   border-radius: 12px;
   background-color: #55969e;
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  ${'' /* display: flex; */}
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   width: 100px;
 
   margin-left: auto;
   margin-right: auto;
 
-  text-align: center;
-  display: inline-block;
-  color: #fff;
+  color: #fffbf4;
   border: 0;
   text-decoration: none;
   cursor: pointer;
