@@ -18,6 +18,7 @@ class App extends Component {
     error: null,
     bigImage: '',
     showModal: false,
+    listEmpty: false,
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -32,6 +33,7 @@ class App extends Component {
       message: message,
       currentPage: 1,
       error: null,
+      listEmpty: false,
     });
   };
 
@@ -56,6 +58,11 @@ class App extends Component {
       fotoApi
         .fetchArticles(options)
         .then(hits => {
+          if (hits.length === 0) {
+            this.setState({ listEmpty: true });
+            return;
+          }
+
           this.setState(prevState => ({
             hits: [...prevState.hits, ...hits],
             currentPage: prevState.currentPage + 1,
@@ -67,7 +74,7 @@ class App extends Component {
   };
 
   render() {
-    const { hits, isLoading, bigImage, showModal } = this.state;
+    const { hits, isLoading, bigImage, showModal, listEmpty } = this.state;
     const shouldRenderLoadMoreButton = hits.length > 0 && !isLoading;
 
     return (
@@ -75,7 +82,21 @@ class App extends Component {
         <Container>
           <Searchbar onSubmit={this.handleFormSubmit} />
 
-          <ImageGallery images={hits} onImageClick={this.handleImageClick} />
+          {listEmpty ? (
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                // alignItems: 'center',
+                height: '100vh',
+                fontSize: '24px',
+              }}
+            >
+              Давай поищем что-то другое
+            </div>
+          ) : (
+            <ImageGallery images={hits} onImageClick={this.handleImageClick} />
+          )}
 
           {showModal && (
             <Modal onClose={this.toggleModal} bigImage={bigImage}></Modal>
