@@ -2,9 +2,16 @@ import styled from '@emotion/styled';
 
 export const Button = styled.button`
   padding: 8px 16px;
-  border-radius: 2px;
+  border-radius: 12px;
   background-color: #55969e;
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  ${'' /* display: flex; */}
+  width: 100px;
+
+  margin-left: auto;
+  margin-right: auto;
+
   text-align: center;
   display: inline-block;
   color: #fff;

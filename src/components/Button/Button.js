@@ -9,8 +9,8 @@ const ButtonLoadMore = ({ onClick, isLoading }) => (
       <>
         <Vortex
           visible={true}
-          height="80"
-          width="80"
+          height="20"
+          width="20"
           ariaLabel="blocks-loading"
           wrapperStyle={{}}
           wrapperClass="blocks-wrapper"
