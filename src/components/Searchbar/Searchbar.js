@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { Notify } from 'notiflix';
+import { BsSearch } from 'react-icons/bs';
 
 import {
   Searchbars,
@@ -39,6 +40,7 @@ class Searchbar extends Component {
       <Searchbars>
         <SearchForm onSubmit={this.handleSubmit}>
           <SearchFormButton type="submit">
+            <BsSearch size={25} />
             <SearchFormButtonLabel>Search</SearchFormButtonLabel>
           </SearchFormButton>
 
