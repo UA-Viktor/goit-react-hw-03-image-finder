@@ -1,22 +1,19 @@
 import React from 'react';
 import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
+import { ImageGallerys } from './ImageGallery.styled';
 
-const ImageGallery = ({ fotos }) => (
-  <ul
-    className="gallery"
-    style={{
-      display: 'flex',
-      flexWrap: 'wrap',
-    }}
-  >
-    {fotos.map(({ id, webformatURL, largeImageURL }) => (
+const ImageGallery = ({ images, onImageClick }) => (
+  <ImageGallerys>
+    {images.map(({ id, webformatURL, largeImageURL }) => (
       <ImageGalleryItem
         key={id}
+        id={id}
         webformatURL={webformatURL}
         largeImageURL={largeImageURL}
+        onClick={() => onImageClick(largeImageURL)}
       />
     ))}
-  </ul>
+  </ImageGallerys>
 );
 
 export default ImageGallery;

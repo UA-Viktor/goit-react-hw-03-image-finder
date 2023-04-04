@@ -1,5 +1,13 @@
 import { Component } from 'react';
-import { toast } from 'react-toastify';
+import { Notify } from 'notiflix';
+
+import {
+  Searchbars,
+  SearchForm,
+  SearchFormButton,
+  SearchFormButtonLabel,
+  SearchFormButtonInput,
+} from './Searchbar.styled';
 
 class Searchbar extends Component {
   state = {
@@ -14,7 +22,11 @@ class Searchbar extends Component {
     e.preventDefault();
 
     if (this.state.message.trim() === '') {
-      toast('Введите что нибудь.');
+      Notify.failure('Введите что нибудь.', {
+        width: '270px',
+        svgSize: '120px',
+        fontSize: '20px',
+      });
       return;
     }
 
@@ -24,14 +36,13 @@ class Searchbar extends Component {
 
   render() {
     return (
-      <header className="searchbar">
-        <form className="form" onSubmit={this.handleSubmit}>
-          <button type="submit" className="button">
-            <span className="button-label">Search</span>
-          </button>
+      <Searchbars>
+        <SearchForm onSubmit={this.handleSubmit}>
+          <SearchFormButton type="submit">
+            <SearchFormButtonLabel>Search</SearchFormButtonLabel>
+          </SearchFormButton>
 
-          <input
-            className="input"
+          <SearchFormButtonInput
             value={this.state.message}
             type="text"
             autoComplete="off"
@@ -39,8 +50,8 @@ class Searchbar extends Component {
             placeholder="Search images and photos"
             onChange={this.handleChange}
           />
-        </form>
-      </header>
+        </SearchForm>
+      </Searchbars>
     );
   }
 }
